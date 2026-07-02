@@ -1,0 +1,11 @@
+<Solution>
+  <Project Path="APICompanion/APICompanion.csproj">
+    <BuildDependency Project="Servicos/Servico.csproj" />
+  </Project>
+  <Project Path="Model/Model.csproj" />
+  <Project Path="Repositorio/Repositorio.csproj" />
+  <Project Path="Servicos/Servico.csproj">
+    <BuildDependency Project="Model/Model.csproj" />
+    <BuildDependency Project="Repositorio/Repositorio.csproj" />
+  </Project>
+</Solution>
