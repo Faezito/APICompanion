@@ -21,12 +21,12 @@ namespace APICompanion.Controllers
             return Ok();
         }
 
-        [HttpGet("obter")]
+        [HttpGet("{usuarioId}")]
         public async Task<IActionResult> ObterPorId(int usuarioId)
         {
             var usuario = await _servicoUsuario.ObterPorId(usuarioId);
 
-            return Json(usuario);
+            return Ok(usuario);
         }
 
         [HttpGet("listar")]
@@ -34,7 +34,7 @@ namespace APICompanion.Controllers
         {
             var usuarios = await _servicoUsuario.Listar();
 
-            return Json(usuarios);
+            return Ok(usuarios);
         }
 
         [HttpPut("atualizar-usuario")]
