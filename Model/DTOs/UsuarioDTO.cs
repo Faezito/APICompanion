@@ -38,4 +38,11 @@
         };
         public DateTime DataNascimento { get; set; }
     }
+
+    public class UsuarioDTODelecao
+    {
+        public int Id { get; set; }
+        public int PessoaId { get; set; }
+        public DateTime DataDeletado { get; set; } = DateTime.Now;
+    }
 }
