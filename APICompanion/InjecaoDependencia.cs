@@ -8,6 +8,7 @@ namespace APICompanion
         public static IServiceCollection InjecaoServicos(this IServiceCollection services)
         {
             services.AddScoped<IUsuarioServicos, UsuarioServicos>();
+            services.AddScoped<IAcessoServicos, AcessoServicos>();
             return services;
         }
 
