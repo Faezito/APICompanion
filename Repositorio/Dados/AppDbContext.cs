@@ -25,6 +25,11 @@ namespace Repositorio.Dados
                         .HasForeignKey<Usuario>(u => u.PessoaId);
             });
 
+            modelBuilder.Entity<LogDeErro>(entidade =>
+            {
+                entidade.ToTable("LOGSDEERRO");
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
