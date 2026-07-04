@@ -51,7 +51,7 @@ namespace APICompanion.Controllers
             return Ok();
         }
 
-        [HttpDelete("deletar")]
+        [HttpDelete("excluir/{usuarioId:int}")]
         public async Task<IActionResult> DeletarUsuario(int usuarioId)
         {
             await _servicoUsuario.DeletarSemExcluir(new UsuarioDTODelecao { Id = usuarioId });
