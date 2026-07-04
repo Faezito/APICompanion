@@ -9,6 +9,7 @@ namespace APICompanion
         {
             services.AddScoped<IUsuarioServicos, UsuarioServicos>();
             services.AddScoped<IAcessoServicos, AcessoServicos>();
+            services.AddScoped<ILogDeErroServicos, LogDeErroServicos>();
             return services;
         }
 
