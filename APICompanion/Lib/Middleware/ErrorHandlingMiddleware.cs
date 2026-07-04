@@ -25,11 +25,19 @@ public class ErrorHandlingMiddleware
         }
         catch (Exception ex)
         {
+            var statusCode = ex switch
+            {
+                UnauthorizedAccessException => StatusCodes.Status401Unauthorized,
+                ArgumentException => StatusCodes.Status400BadRequest,
+                KeyNotFoundException => StatusCodes.Status404NotFound,
+                _ => StatusCodes.Status500InternalServerError
+            };
+
             var problem = new ProblemDetails
             {
                 Title = "Erro",
                 Detail = ex.Message,
-                Status = 500
+                Status = statusCode
             };
 
             TratarErroSql(ex, problem);

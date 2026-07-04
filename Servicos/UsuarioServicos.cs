@@ -38,7 +38,8 @@ namespace Servicos
         public async Task AtualizarSenha(UsuarioDTOAtualizacaoDeSenha dto)
         {
             if (dto.SenhaAtual == dto.NovaSenha) throw new Exception("A senha atual não pode ser igual à anterior.");
-            var usuario = await _db.Set<Usuario>().FirstOrDefaultAsync(x => x.Id == dto.UsuarioId);
+            var usuario = await _db.Set<Usuario>().FirstOrDefaultAsync(x => x.Id == dto.UsuarioId)
+            ?? throw new Exception("Erro ao alterar a senha: usuário não encontrado");
 
             usuario.SenhaHash = bCrypt.HashPassword(dto.NovaSenha);
             _db.Set<Usuario>().Update(usuario);

@@ -37,7 +37,7 @@ namespace Servicos
                 .FirstOrDefaultAsync(u => u.Email == dto.Login || u.NomeUsuario == dto.Login);
 
             if (usuario == null || !bCrypt.Verify(dto.Senha, usuario.SenhaHash))
-                throw new Exception("Credenciais inválidas.");
+                throw new UnauthorizedAccessException("Credenciais inválidas.");
     
             return new LoginResponseDTO
             {
