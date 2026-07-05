@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Model.DTOs;
 using Servicos;
 
@@ -21,6 +22,7 @@ namespace APICompanion.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpGet("{usuarioId}")]
         public async Task<IActionResult> ObterPorId(int usuarioId)
         {
@@ -29,6 +31,7 @@ namespace APICompanion.Controllers
             return Ok(usuario);
         }
 
+        [Authorize]
         [HttpGet("listar")]
         public async Task<IActionResult> Listar()
         {
@@ -37,6 +40,7 @@ namespace APICompanion.Controllers
             return Ok(usuarios);
         }
 
+        [Authorize]
         [HttpPut("atualizar-usuario")]
         public async Task<IActionResult> AtualizarUsuario(UsuarioDTOAtualizacao dto)
         {
@@ -51,6 +55,7 @@ namespace APICompanion.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpDelete("excluir/{usuarioId:int}")]
         public async Task<IActionResult> DeletarUsuario(int usuarioId)
         {
