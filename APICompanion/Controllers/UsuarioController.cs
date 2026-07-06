@@ -31,7 +31,7 @@ namespace APICompanion.Controllers
             return Ok(usuario);
         }
 
-        [Authorize]
+        // [Authorize]
         [HttpGet("listar")]
         public async Task<IActionResult> Listar()
         {

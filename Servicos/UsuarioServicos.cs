@@ -31,6 +31,7 @@ namespace Servicos
         {
             Usuario usuario = await ObterUsuarioPorId(usuarioDTOAtualizacao.Id)
                 ?? throw new Exception("Erro ao atualizar usuario: usuário não encontrado");
+
             usuario.Email = usuarioDTOAtualizacao.Email;
             usuario.Perfil = usuarioDTOAtualizacao.Perfil.Value;
             await SalvarAsync();
@@ -38,9 +39,14 @@ namespace Servicos
 
         public async Task AtualizarSenha(UsuarioDTOAtualizacaoDeSenha dto)
         {
-            if (dto.SenhaAtual == dto.NovaSenha) throw new Exception("A senha atual não pode ser igual à anterior.");
             var usuario = await _db.Set<Usuario>().FirstOrDefaultAsync(x => x.Id == dto.UsuarioId)
             ?? throw new Exception("Erro ao alterar a senha: usuário não encontrado");
+
+            if(!bCrypt.Verify(dto.SenhaAtual, usuario.SenhaHash))
+                throw new Exception("A senha atual está incorreta.");
+
+            if (dto.SenhaAtual == dto.NovaSenha || bCrypt.Verify(dto.NovaSenha, usuario.SenhaHash)) 
+                throw new Exception("A senha atual não pode ser igual à anterior.");
 
             usuario.SenhaHash = bCrypt.HashPassword(dto.NovaSenha);
             _db.Set<Usuario>().Update(usuario);
