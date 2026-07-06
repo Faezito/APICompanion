@@ -7,6 +7,7 @@
         public string Senha { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Genero { get; set; } = null!;
+        public Perfil? perfil { get; set; }
         public DateTime DataNascimento { get; set; }
     }
 
@@ -14,6 +15,7 @@
     {
         public int Id { get; set; }
         public string Email { get; set; } = null!;
+        public Perfil? Perfil { get; set; }
     }
 
     public class UsuarioDTOAtualizacaoDeSenha
@@ -37,6 +39,7 @@
             _ => "Outro"
         };
         public DateTime DataNascimento { get; set; }
+        public Perfil Perfil { get; set; }
     }
 
     public class UsuarioDTODelecao
@@ -44,5 +47,11 @@
         public int Id { get; set; }
         public int PessoaId { get; set; }
         public DateTime DataDeletado { get; set; } = DateTime.Now;
+    }
+
+    public enum Perfil
+    {
+        Admin = 1,
+        Usuario = 5
     }
 }

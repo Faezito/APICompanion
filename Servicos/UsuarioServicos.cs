@@ -32,6 +32,7 @@ namespace Servicos
             Usuario usuario = await ObterUsuarioPorId(usuarioDTOAtualizacao.Id)
                 ?? throw new Exception("Erro ao atualizar usuario: usuário não encontrado");
             usuario.Email = usuarioDTOAtualizacao.Email;
+            usuario.Perfil = usuarioDTOAtualizacao.Perfil.Value;
             await SalvarAsync();
         }
 
