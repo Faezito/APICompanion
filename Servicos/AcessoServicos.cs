@@ -75,6 +75,10 @@ namespace Servicos
                 new(JwtRegisteredClaimNames.UniqueName, usuario.NomeUsuario),
                 new(JwtRegisteredClaimNames.Email, usuario.Email),
 
+                new (ClaimTypes.NameIdentifier, usuario.Id.ToString()),
+                new (ClaimTypes.Name, usuario.NomeUsuario),
+                new (ClaimTypes.Role, usuario.Perfil.ToString()),
+
                 new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
         }
