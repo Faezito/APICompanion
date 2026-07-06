@@ -1,4 +1,6 @@
-﻿namespace Model.Entidades
+﻿using Model.DTOs;
+
+namespace Model.Entidades
 {
     public class Usuario
     {
@@ -9,5 +11,6 @@
         public string SenhaHash { get; set; } = null!;
         public DateTime UltimoAcesso { get; set; } = DateTime.Now;
         public Pessoa Pessoa { get; set; } = null!;
+        public Perfil Perfil { get; set; }
     }
 }
